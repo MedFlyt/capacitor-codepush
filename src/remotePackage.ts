@@ -6,7 +6,6 @@ import { DownloadProgress, ILocalPackage, IRemotePackage, Package } from "./pack
 import { Sdk } from "./sdk";
 import { Directory, Filesystem } from "@capacitor/filesystem";
 import { FileUtil } from "./fileUtil";
-import { Http } from "@capacitor-community/http";
 import {PluginListenerHandle} from "@capacitor/core";
 
 /**
@@ -55,16 +54,16 @@ export class RemotePackage extends Package implements IRemotePackage {
 
       let downloadListener: PluginListenerHandle
       if (downloadProgress) {
-        downloadListener = await Http.addListener("progress", (data) => {
+        downloadListener = await Filesystem.addListener("progress", (data) => {
           downloadProgress({receivedBytes: data.bytes, totalBytes: data.contentLength});
         });
       }
 
-      await Http.downloadFile({
+      await Filesystem.downloadFile({
         url: this.downloadUrl,
         method: "GET",
-        filePath: file,
-        fileDirectory: Directory.Data,
+        path: file,
+        directory: Directory.Data,
         responseType: "blob",
         progress: true
       });

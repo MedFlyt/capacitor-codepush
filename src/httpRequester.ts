@@ -1,7 +1,7 @@
 import { Http } from "code-push/script/acquisition-sdk";
 import type { Callback } from "./callbackUtil";
-import type { HttpResponse, HttpOptions } from "@capacitor-community/http";
-import { Http as NativeHttp } from "@capacitor-community/http";
+import type { HttpOptions } from "@capacitor/core";
+import { CapacitorHttp as NativeHttp } from "@capacitor/core";
 
 
 /**
@@ -59,7 +59,7 @@ export class HttpRequester implements Http.Requester {
         } else {
             options.data = requestBody;
         }
-        NativeHttp.request(options).then((nativeRes: HttpResponse) => {
+        NativeHttp.request(options).then((nativeRes) => {
             if (typeof nativeRes.data === "object") nativeRes.data = JSON.stringify(nativeRes.data);
             var response: Http.Response = { statusCode: nativeRes.status, body: nativeRes.data };
             requestCallback && requestCallback(null, response);

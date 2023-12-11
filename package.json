@@ -1,11 +1,11 @@
 {
   "name": "capacitor-codepush",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "CodePush Plugin for Capacitor",
   "module": "dist/esm/index.js",
   "types": "dist/esm/index.d.ts",
-  "homepage": "https://github.com/salohcin714/capacitor-codepush",
-  "repository": "https://github.com/salohcin714/capacitor-codepush.git",
+  "homepage": "https://github.com/MedFlyt/capacitor-codepush",
+  "repository": "https://github.com/MedFlyt/capacitor-codepush.git",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
   },
@@ -26,17 +26,16 @@
     "capacitor-android",
     "capacitor-ios"
   ],
-  "author": "Nicholas Norris",
+  "author": "Eliya Cohen",
   "license": "MIT",
   "devDependencies": {
-    "@capacitor-community/http": "^1.4.1",
     "@capacitor/android": "^5.0.0",
-    "@capacitor/ios": "^5.0.0",
     "@capacitor/cli": "^5.0.0",
     "@capacitor/core": "^5.0.0",
     "@capacitor/device": "^5.0.0",
     "@capacitor/dialog": "^5.0.0",
     "@capacitor/filesystem": "^5.0.0",
+    "@capacitor/ios": "^5.0.0",
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "^11.0.0",
     "@rollup/plugin-node-resolve": "^11.1.0",
@@ -60,6 +59,7 @@
     "mkdirp": "^1.0.4",
     "mocha": "^8.2.1",
     "mocha-junit-reporter": "^2.0.0",
+    "prettier": "^3.1.1",
     "q": "^1.5.1",
     "replace": "^1.2.0",
     "rollup": "^2.38.0",
@@ -72,7 +72,6 @@
     "code-push": "^4.0.2"
   },
   "peerDependencies": {
-    "@capacitor-community/http": "^1.4.1",
     "@capacitor/core": "^5.0.0",
     "@capacitor/device": "^5.0.0",
     "@capacitor/dialog": "^5.0.0",
