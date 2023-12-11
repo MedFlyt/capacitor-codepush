@@ -14,7 +14,6 @@ import { Package } from "./package";
 import { Sdk } from "./sdk";
 import { Directory, Filesystem } from "@capacitor/filesystem";
 import { FileUtil } from "./fileUtil";
-import { Http } from "@capacitor-community/http";
 /**
  * Defines a remote package, which represents an update package available for download.
  */
@@ -53,15 +52,15 @@ export class RemotePackage extends Package {
                 }
                 let downloadListener;
                 if (downloadProgress) {
-                    downloadListener = yield Http.addListener("progress", (data) => {
+                    downloadListener = yield Filesystem.addListener("progress", (data) => {
                         downloadProgress({ receivedBytes: data.bytes, totalBytes: data.contentLength });
                     });
                 }
-                yield Http.downloadFile({
+                yield Filesystem.downloadFile({
                     url: this.downloadUrl,
                     method: "GET",
-                    filePath: file,
-                    fileDirectory: Directory.Data,
+                    path: file,
+                    directory: Directory.Data,
                     responseType: "blob",
                     progress: true
                 });

@@ -1,4 +1,4 @@
-var capacitorPlugin = (function (exports, acquisitionSdk, filesystem, core, http, device, dialog) {
+var capacitorPlugin = (function (exports, acquisitionSdk, filesystem, core, device, dialog) {
     'use strict';
 
     /**
@@ -442,7 +442,7 @@ var capacitorPlugin = (function (exports, acquisitionSdk, filesystem, core, http
             else {
                 options.data = requestBody;
             }
-            http.Http.request(options).then((nativeRes) => {
+            core.CapacitorHttp.request(options).then((nativeRes) => {
                 if (typeof nativeRes.data === "object")
                     nativeRes.data = JSON.stringify(nativeRes.data);
                 var response = { statusCode: nativeRes.status, body: nativeRes.data };
@@ -1114,15 +1114,15 @@ var capacitorPlugin = (function (exports, acquisitionSdk, filesystem, core, http
                     }
                     let downloadListener;
                     if (downloadProgress) {
-                        downloadListener = yield http.Http.addListener("progress", (data) => {
+                        downloadListener = yield filesystem.Filesystem.addListener("progress", (data) => {
                             downloadProgress({ receivedBytes: data.bytes, totalBytes: data.contentLength });
                         });
                     }
-                    yield http.Http.downloadFile({
+                    yield filesystem.Filesystem.downloadFile({
                         url: this.downloadUrl,
                         method: "GET",
-                        filePath: file,
-                        fileDirectory: filesystem.Directory.Data,
+                        path: file,
+                        directory: filesystem.Directory.Data,
                         responseType: "blob",
                         progress: true
                     });
@@ -1653,5 +1653,5 @@ var capacitorPlugin = (function (exports, acquisitionSdk, filesystem, core, http
 
     return exports;
 
-}({}, acquisitionSdk, filesystem, capacitorExports, http, device, dialog));
+}({}, acquisitionSdk, filesystem, capacitorExports, device, dialog));
 //# sourceMappingURL=plugin.js.map
