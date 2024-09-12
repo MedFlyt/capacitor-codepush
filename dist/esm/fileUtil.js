@@ -149,6 +149,9 @@ export class FileUtil {
     static readFile(directory, path) {
         return __awaiter(this, void 0, void 0, function* () {
             const result = yield Filesystem.readFile({ directory, path, encoding: Encoding.UTF8 });
+            if (result.data instanceof Blob) {
+                return result.data.text();
+            }
             return result.data;
         });
     }

@@ -239,6 +239,9 @@ var capacitorPlugin = (function (exports, acquisitionSdk, filesystem, core, devi
         static readFile(directory, path) {
             return __awaiter(this, void 0, void 0, function* () {
                 const result = yield filesystem.Filesystem.readFile({ directory, path, encoding: filesystem.Encoding.UTF8 });
+                if (result.data instanceof Blob) {
+                    return result.data.text();
+                }
                 return result.data;
             });
         }
